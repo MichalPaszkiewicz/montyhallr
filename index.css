@@ -1,0 +1,189 @@
+.card-container{
+    float: left;
+    position: relative;
+    
+}
+
+.card{
+    height: 90%;
+    width: 90%;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    position: absolute;
+    cursor: pointer;
+}
+
+.card.flipped{
+    cursor: default;
+}
+
+.card.chosen::after{
+    content: "chosen";
+    transform: rotateZ(-45deg);
+    position: absolute;
+    font-weight: bold;
+    z-index: 10000;
+    top: 0px;
+    left: -20px;
+    text-align: center;
+    background: white;
+    display: block;
+    border: 1px solid black;
+    padding: 0 5px;
+}
+
+.flipper{
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.card.flipped .flipper{
+    transform: rotateY(180deg);
+}
+
+.card .front, .card .back{
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;    
+    box-sizing: border-box;
+    box-shadow: 1px 1px 2px 0px;
+}
+
+.card .front{
+    background: white;
+    z-index: 2;
+    transform: rotateY(0deg);
+    box-sizing: border-box;
+    padding: 5%;
+}
+
+.card .front .pattern{
+    height: 93%;
+    width: 90%;
+
+    position: absolute;
+    box-sizing: border-box;
+    border-radius: 8%;
+    border: 1px solid #777777;
+    background: url(http://www.michalpaszkiewicz.co.uk/montyhallr/pattern2.png);
+    background-size: 15%;
+}
+
+.card .correct{
+    /*background: green;*/
+    width:100%;
+    height: 100%;
+    border-radius: 5%;
+    background: url(http://www.michalpaszkiewicz.co.uk/montyhallr/pacman.svg.png) center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+.correct-corner{
+    width: 15%;
+    height: 15%;
+    background: url(http://www.michalpaszkiewicz.co.uk/montyhallr/pacman.svg.png) center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 5%;
+}
+
+.wrong-corner{
+    width: 15%;
+    height: 15%;
+    position: absolute;
+    left: 5%;
+}
+
+.wrong-corner.red{
+    background: url(http://www.michalpaszkiewicz.co.uk/montyhallr/ghostred.png) center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.wrong-corner.blue{
+    background: url(http://www.michalpaszkiewicz.co.uk/montyhallr/ghostblue.png) center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.wrong-corner.green{
+    background: url(http://www.michalpaszkiewicz.co.uk/montyhallr/ghostgreen.png) center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.wrong.red{
+    background: url(http://www.michalpaszkiewicz.co.uk/montyhallr/ghostred.png) center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+.wrong.blue{
+    background: url(http://www.michalpaszkiewicz.co.uk/montyhallr/ghostblue.png) center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+.wrong.green{
+    background: url(http://www.michalpaszkiewicz.co.uk/montyhallr/ghostgreen.png) center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+.tl, .tr{
+    top: 2%;
+}
+
+.bl, .br{
+    bottom: 2%;
+}
+
+.tr, .br{
+    right: 5%;
+    left: auto;
+}
+
+.card .wrong{
+    /*background: red;*/
+    width:100%;
+    height: 100%;
+    border-radius: 5%;
+}
+
+.card .back{
+    transform: rotateY(180deg);
+}
+
+.clear{
+    content: "";
+    clear:both;
+}
+
+.restart{
+    display: inline-block;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 7px 0px;    
+    margin: 5px;
+    cursor: pointer;
+    font-family: monospace;
+}
+
+.restart:hover{
+    box-shadow: none;
+    box-shadow: 1px 1px 5px 0px;
+}
