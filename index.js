@@ -3,7 +3,7 @@ var MontyHall;
     var cardHeightToWidthRatio = 1.618;
     var cardMaxWidth = 200;
     var cardMinWidth = 40;
-    function play(id, cards) {
+    function play(id, cards, onGameEnded) {
         var bodyHeight = document.body.offsetHeight;
         var screenHeight = window.innerHeight;
         var screenWidth = screen.width;
@@ -17,8 +17,11 @@ var MontyHall;
             cards = maxCards;
         }
         var restartButtonCreated = false;
-        var game = new Game(function (e) {
+        var game = new Game(function (e, card) {
             if (!restartButtonCreated) {
+                if (onGameEnded) {
+                    onGameEnded(card);
+                }
                 var restartButton = document.createElement("div");
                 restartButton.className = "restart";
                 restartButton.innerText = "Restart";
@@ -72,7 +75,7 @@ var MontyHall;
             var self = this;
             self.element.onclick = function (e) {
                 self.flip(0);
-                self.onfinish(e);
+                self.onfinish(e, self);
             };
         };
         return Card;
@@ -95,8 +98,8 @@ var MontyHall;
                 var card = getCard(width, isRand);
                 var cardObject = new Card(card, isRand, function (e) {
                     self.turnUnchosenButOne();
-                }, function (e) {
-                    self.onfinish(e);
+                }, function (e, card) {
+                    self.onfinish(e, card);
                 });
                 this.cards.push(cardObject);
                 cardBox.appendChild(card);

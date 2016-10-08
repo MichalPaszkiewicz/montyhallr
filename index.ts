@@ -4,7 +4,7 @@ namespace MontyHall{
     var cardMaxWidth = 200;
     var cardMinWidth = 40;
 
-    export function play(id: string, cards: number){
+    export function play(id: string, cards: number, onGameEnded?: (card: Card) => void){
         var bodyHeight = document.body.offsetHeight;
         var screenHeight = window.innerHeight;
         var screenWidth = screen.width;
@@ -21,8 +21,11 @@ namespace MontyHall{
         }
 
         var restartButtonCreated = false;
-        var game = new Game((e) => {
+        var game = new Game((e, card: Card) => {
             if(!restartButtonCreated){
+                if(onGameEnded){
+                    onGameEnded(card);
+                }
                 var restartButton = document.createElement("div");
                 restartButton.className = "restart";
                 restartButton.innerText = "Restart";
@@ -53,7 +56,7 @@ namespace MontyHall{
 
     class Card{
         isChosen: boolean = false;
-        constructor(public element: HTMLElement, public isCorrect: boolean, onclick: (e) => void, public onfinish: (e) => void){
+        constructor(public element: HTMLElement, public isCorrect: boolean, onclick: (e) => void, public onfinish: (e, card: Card) => void){
             var self = this;
             self.element.onclick = function(e){ 
                 self.choose();
@@ -76,7 +79,7 @@ namespace MontyHall{
             var self = this;
             self.element.onclick = function(e){
                 self.flip(0);
-                self.onfinish(e);
+                self.onfinish(e, self);
             };
         }
     }
@@ -87,7 +90,7 @@ namespace MontyHall{
         chosenCard: Card;
         switchCard: Card;
 
-        constructor(public onfinish: (e) => void){
+        constructor(public onfinish: (e, card:Card) => void){
 
         }
 
@@ -104,8 +107,8 @@ namespace MontyHall{
                 var card = getCard(width, isRand);
                 var cardObject = new Card(card, isRand, (e) => {
                     self.turnUnchosenButOne();
-                }, (e) => {
-                    self.onfinish(e);
+                }, (e, card: Card) => {
+                    self.onfinish(e, card);
                 });
                 this.cards.push(cardObject);                
                 cardBox.appendChild(card);
