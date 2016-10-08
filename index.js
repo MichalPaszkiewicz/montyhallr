@@ -26,7 +26,7 @@ var MontyHall;
                 restartButton.className = "restart";
                 restartButton.innerText = "Restart";
                 restartButton.onclick = function (e) {
-                    play(id, cards);
+                    play(id, cards, onGameEnded);
                 };
                 outerBox.appendChild(restartButton);
                 restartButtonCreated = true;
