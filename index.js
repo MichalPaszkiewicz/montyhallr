@@ -38,7 +38,7 @@ var MontyHall;
             var ss = document.createElement("link");
             ss.rel = "stylesheet";
             ss.type = "text/css";
-            ss.href = "http://www.michalpaszkiewicz.co.uk/montyhallr/index.css";
+            ss.href = "https://www.michalpaszkiewicz.co.uk/montyhallr/index.css";
             ss.id = "monty-hall-css";
             document.head.appendChild(ss);
         }
