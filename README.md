@@ -11,7 +11,7 @@ http://www.michalpaszkiewicz.co.uk/montyhallr/index.html
 
 Simply add the following line to your head:
 ```html
-<script src="http://www.michalpaszkiewicz.co.uk/montyhallr/index.js"></script>
+<script src="https://www.michalpaszkiewicz.co.uk/montyhallr/index.js"></script>
 ```
 
 Then pass the id of the element you want the game to appear inside of and the number of cards you want to play with to this function:
